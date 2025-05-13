@@ -34,10 +34,62 @@ $stmt=$conn->prepare("
             productImage VARCHAR(100) NOT NULL,
             dimensionImage VARCHAR(100) NOT NULL,
             soldOut BOOL NOT NULL,
-            price             
+            price FLOAT(4,2) NOT NULL,
+            quant VARCHAR(50) NOT NULL            
 
         )
 
+")
+$stmt->execute();
+$stmt->closeCursor();
+echo("<br>Products Table is Created")
+//basket table
+$stmt=$conn->prepare("
+        DROP TABLE IF EXISTS Basket;
+        CREATE TABLE Basket (
+            basketID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            orderDate DATETIME(fsp) NOT NULL,
+            itemID INT(6) NOT NULL,
+            quantBasket INT(6) NOT NULL
+
+        )
+")
+$stmt->execute();
+$stmt->closeCursor();
+echo("<br>Basket Table is created")
+//order table
+$stmt=$conn->prepare("
+        DROP TABLE IF EXISTS Orders;
+        CREATE TABLE Orders (
+            deliveryID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userID INT(6) NOT NULL,
+            basketID INT(6) NOT NULL
+        )
+")
+$stmt->execute();
+$stmt->closeCursor();
+echo("<br>Order table created")
+//review table
+$stmt=$conn->prepare("
+        DROP TABLE IF EXISTS Reviews;
+        CREATE TABLE Reviews (
+            reviewID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userID INT(6) NOT NULL,
+            reviewContent VARCHAR(1000) NOT NULL,
+            itemID INT(6) NOT NULL,
+            ratingNumber CHAR(2) NOT NULL,
+            dateReview DATETIME(fsp) NOT NULL
+        )
+")
+$stmt-execute();
+$stmt-closeCursor();
+echo("<br>Review table completed")
+//types of product table
+$stmt=$conn-prepare("
+        DROP TABLE IF EXISTS Types;
+        CREATE TABLE Types (
+            type TINYTEXT(50) NOT NULL
+        )
 ")
 
 ?>
