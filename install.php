@@ -1,6 +1,6 @@
+
 <?php
 include_once("connection.php")
-
 //User Table
 $stmt = $conn->prepare("
     DROP TABLE IF EXISTS Users;
@@ -19,7 +19,6 @@ $stmt = $conn->prepare("
             cardExpiry CHAR(5) NOT NULL,
             cardCVC CHAR(4) NOT NULL
     )    
-
 ");
 $stmt->execute();
 $stmt->closeCursor();
@@ -36,9 +35,7 @@ $stmt=$conn->prepare("
             soldOut BOOL NOT NULL,
             price FLOAT(4,2) NOT NULL,
             quant VARCHAR(50) NOT NULL            
-
         )
-
 ")
 $stmt->execute();
 $stmt->closeCursor();
@@ -51,7 +48,6 @@ $stmt=$conn->prepare("
             orderDate DATETIME(fsp) NOT NULL,
             itemID INT(6) NOT NULL,
             quantBasket INT(6) NOT NULL
-
         )
 ")
 $stmt->execute();
@@ -91,5 +87,4 @@ $stmt=$conn-prepare("
             type TINYTEXT(50) NOT NULL
         )
 ")
-
 ?>
