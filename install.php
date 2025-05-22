@@ -9,8 +9,8 @@ $stmt = $conn->prepare("
             userType TINYINT(1) DEFAULT 1,
             email VARCHAR(50) UNIQUE NOT NULL,
             password VARCHAR(300) NOT NULL,
-            firstname TINYTEXT(50) NOT NULL,
-            surname TINYTEXT(50) NOT NULL,
+            firstname TINYTEXT NOT NULL,
+            surname TINYTEXT NOT NULL,
             telephone VARCHAR(11) NOT NULL,
             postcode VARCHAR(7) NOT NULL,
             addressLine VARCHAR(20) NOT NULL,
@@ -20,7 +20,9 @@ $stmt = $conn->prepare("
             cardCVC CHAR(4) NOT NULL
     )    
 ");
+
 $stmt->execute();
+echo("bobo");
 $stmt->closeCursor();
 echo ("<br>Users Table is Created");
 //products table
@@ -45,7 +47,7 @@ $stmt=$conn->prepare("
         DROP TABLE IF EXISTS Basket;
         CREATE TABLE Basket (
             basketID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            orderDate DATETIME(fsp) NOT NULL,
+            orderDate DATETIME NOT NULL,
             itemID INT(6) NOT NULL,
             quantBasket INT(6) NOT NULL
         )
@@ -74,17 +76,20 @@ $stmt=$conn->prepare("
             reviewContent VARCHAR(1000) NOT NULL,
             itemID INT(6) NOT NULL,
             ratingNumber CHAR(2) NOT NULL,
-            dateReview DATETIME(fsp) NOT NULL
+            dateReview DATETIME NOT NULL
         )
 ");
-$stmt-execute();
-$stmt-closeCursor();
+$stmt->execute();
+$stmt->closeCursor();
 echo("<br>Review table completed");
 //types of product table
-$stmt=$conn-prepare("
+$stmt=$conn->prepare("
         DROP TABLE IF EXISTS Types;
         CREATE TABLE Types (
-            type TINYTEXT(50) NOT NULL
+            type TINYTEXT NOT NULL
         )
 ");
+$stmt->execute();
+$stmt->closeCursor();
+echo("<br>Types table completed");
 ?>
