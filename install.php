@@ -6,9 +6,10 @@ $stmt = $conn->prepare("
     DROP TABLE IF EXISTS Users;
     CREATE TABLE Users (
             userID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            userType TINYINT(1) DEFAULT 1,
+            role TINYINT(1) DEFAULT 1,
             email VARCHAR(50) UNIQUE NOT NULL,
             password VARCHAR(300) NOT NULL,
+            username VARCHAR(300) NOT NULL,
             firstname TINYTEXT NOT NULL,
             surname TINYTEXT NOT NULL,
             telephone VARCHAR(11) NOT NULL,
@@ -22,7 +23,6 @@ $stmt = $conn->prepare("
 ");
 
 $stmt->execute();
-echo("bobo");
 $stmt->closeCursor();
 echo ("<br>Users Table is Created");
 //products table
